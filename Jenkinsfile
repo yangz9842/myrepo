@@ -7,7 +7,7 @@ pipeline {
                 script {
                     git branch: 'main',
                         credentialsId: 'token',
-                        url: 'https://github.com/junwoosan/JTEKT-demo.git'
+                        url: 'https://github.com/yangz9842/myrepo.git'
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
                 powershell 'ls'
                 powershell 'pwd'
                 powershell 'whoami'
-                powershell 'python pipeline_B2B.py /tmp/ep/JTEKT-demo  test.slx'
+                powershell 'python pipeline_B2B.py /tmp/ep/myrepo  test.slx'
       
             }
         }
