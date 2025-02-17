@@ -15,7 +15,7 @@ pipeline {
         stage('REST API script execution'){
             steps {
         
-                echo 'hello junwoo'
+                echo 'hello yang'
                 powershell 'ls'
                 powershell 'pwd'
                 powershell 'whoami'
