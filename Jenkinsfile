@@ -14,14 +14,13 @@ pipeline {
 
         stage('REST API script execution'){
             steps {
-                powershell '''
-                    echo "Debug: Checking if Python is installed"
-                    python --version
-                '''
+        
+                echo 'hello yang'
                 powershell 'ls'
                 powershell 'pwd'
                 powershell 'whoami'
                 powershell 'python pipeline_B2B.py /tmp/ep/myrepo  test.slx'
+      
             }
         }
     }
