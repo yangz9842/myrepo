@@ -2,9 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/user/repo.git'
+                script {
+                    git branch: 'main',
+                        credentialsId: 'token',
+                        url: 'https://github.com/yangz9842/myrepo.git'
+                }
             }
         }
 
@@ -13,16 +17,11 @@ pipeline {
                 script {
                     sh '''
                     docker run --rm -v $WORKSPACE:/workspace epmltl \
-                        python /workspace/pipeline_B2B.py /workspace model1.slx model2.slx
+                        python /workspace/pipeline_B2B.py /workspace test.slx
                     '''
                 }
             }
         }
-
-        stage('Publish Results') {
-            steps {
-                archiveArtifacts artifacts: '**/test_results/*.log', onlyIfSuccessful: true
-            }
-        }
     }
 }
+
