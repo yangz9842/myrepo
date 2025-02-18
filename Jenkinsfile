@@ -19,6 +19,7 @@ pipeline {
                 powershell 'ls'
                 powershell 'pwd'
                 powershell 'whoami'
+                powershell 'pip install importlib_resources'
                 powershell 'python pipeline_B2B.py /tmp/ep/myrepo  test.slx'
       
             }
