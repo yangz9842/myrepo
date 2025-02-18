@@ -1,6 +1,6 @@
+#!/usr/bin/env groovy
 pipeline {
     agent any
-
     stages {
         stage('Git Checkout') {
             steps {
@@ -12,17 +12,17 @@ pipeline {
             }
         }
 
-        stage('Run Tests in Docker') {
+        stage('REST API script execution'){
             steps {
-                script {
-                    powershell '''
-                    docker run --rm -v "$Env:WORKSPACE:/workspace" epmltl `
-                        python /workspace/pipeline_B2B.py /workspace test.slx
-                    '''
-                }
+        
+                echo 'hello yang'
+                powershell 'ls'
+                powershell 'pwd'
+                powershell 'whoami'
+                powershell 'python pipeline_B2B.py /tmp/ep/myrepo  test.slx'
+      
             }
         }
     }
 }
-
 
