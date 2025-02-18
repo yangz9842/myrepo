@@ -19,6 +19,8 @@ pipeline {
                 powershell 'ls'
                 powershell 'pwd'
                 powershell 'whoami'
+                powershell 'python --version'  // Check Python version
+                powershell 'where python'      // Check Python path
                 powershell 'pip install importlib_resources'
                 powershell 'python pipeline_B2B.py /tmp/ep/myrepo  test.slx'
       
