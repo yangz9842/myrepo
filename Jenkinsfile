@@ -1,28 +1,28 @@
-#!/usr/bin/env groovy
 pipeline {
     agent any
+
     stages {
-        stage('Git Checkout') {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/user/repo.git'
+            }
+        }
+
+        stage('Run Tests in Docker') {
             steps {
                 script {
-                    git branch: 'main',
-                        credentialsId: 'token',
-                        url: 'https://github.com/yangz9842/myrepo.git'
+                    sh '''
+                    docker run --rm -v $WORKSPACE:/workspace epmltl \
+                        python /workspace/pipeline_B2B.py /workspace model1.slx model2.slx
+                    '''
                 }
             }
         }
 
-        stage('REST API script execution'){
+        stage('Publish Results') {
             steps {
-        
-                echo 'hello yang'
-                powershell 'ls'
-                powershell 'pwd'
-                powershell 'whoami'
-                powershell 'python pipeline_B2B.py /tmp/ep/myrepo  test.slx'
-      
+                archiveArtifacts artifacts: '**/test_results/*.log', onlyIfSuccessful: true
             }
         }
     }
 }
-
