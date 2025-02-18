@@ -15,8 +15,8 @@ pipeline {
         stage('Run Tests in Docker') {
             steps {
                 script {
-                    sh '''
-                    docker run --rm -v $WORKSPACE:/workspace epmltl \
+                    powershell '''
+                    docker run --rm -v "$Env:WORKSPACE:/workspace" epmltl `
                         python /workspace/pipeline_B2B.py /workspace test.slx
                     '''
                 }
@@ -24,4 +24,5 @@ pipeline {
         }
     }
 }
+
 
